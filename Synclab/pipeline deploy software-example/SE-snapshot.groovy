@@ -14,7 +14,7 @@ pipeline {
               steps {
                     script {
                       sh """
-                        curl -O http://nexus.synclab:8081/repository/icon-evo-fe-snapshots/@icon-evo/application/application-${VERSION}.tar.gz 
+                        curl -O http://nexus.synclab:8081/repository/icon-evo-fe-snapshots/@icon-evo/application/application-0.0.0.tar.gz 
                         tar -xvf *tar.gz
                         rm *tar.gz 
                       """
@@ -26,7 +26,7 @@ pipeline {
                     script {
                     sh """
                         ssh deploymng@newicontest.synclab "rm -rf /var/www/html/*"
-                        scp *.* deploymng@newicontest.synclab:/var/www/html
+                        scp -r * deploymng@newicontest.synclab:/var/www/html
                     """
                 }
             }
