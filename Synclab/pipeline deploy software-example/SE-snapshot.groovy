@@ -14,19 +14,19 @@ pipeline {
               steps {
                     script {
                       sh """
-                        curl -O http://nexus.synclab:8081/repository/icon-evo-fe-snapshots/@icon-evo/application/application-0.0.0.tar.gz 
+                        curl -O http://example:8081/repository/path/to/application/application-0.0.0.tar.gz 
                         tar -xvf *tar.gz
                         rm *tar.gz 
                       """
                     }
                 }
         }
-        stage('Deploy Docker Agent'){
+        stage('Deploy target machine'){
                steps {
                     script {
                     sh """
-                        ssh deploymng@newicontest.synclab "rm -rf /var/www/html/*"
-                        scp -r * deploymng@newicontest.synclab:/var/www/html
+                        ssh user@example "rm -rf /var/www/html/*"
+                        scp -r * user@example:/var/www/html
                     """
                 }
             }
